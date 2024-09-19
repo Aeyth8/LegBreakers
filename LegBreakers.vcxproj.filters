@@ -22,6 +22,15 @@
     <ClCompile Include="SDK\Engine_functions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\Downloads\Dumper-7\5.4.1-0+UE5-ByteBreakers\CppSDK\SDK\OnlineSubsystem_functions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Downloads\Dumper-7\5.4.1-0+UE5-ByteBreakers\CppSDK\SDK\OnlineSubsystemUtils_functions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Downloads\Dumper-7\5.4.1-0+UE5-ByteBreakers\CppSDK\SDK\Matcha_functions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SDK\Engine_classes.hpp">

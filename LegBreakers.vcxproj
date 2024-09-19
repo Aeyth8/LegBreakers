@@ -119,6 +119,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>C:\Users\Jay\Documents\GitHub\LegBreakers\SDK;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -128,6 +129,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\Downloads\Dumper-7\5.4.1-0+UE5-ByteBreakers\CppSDK\SDK\Matcha_functions.cpp" />
+    <ClCompile Include="..\..\..\Downloads\Dumper-7\5.4.1-0+UE5-ByteBreakers\CppSDK\SDK\OnlineSubsystemUtils_functions.cpp" />
+    <ClCompile Include="..\..\..\Downloads\Dumper-7\5.4.1-0+UE5-ByteBreakers\CppSDK\SDK\OnlineSubsystem_functions.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="SDK\Basic.cpp" />
     <ClCompile Include="SDK\CoreUObject_functions.cpp" />
