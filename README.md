@@ -14,7 +14,7 @@ There's definitely a way to customize the output location but I'm too lazy to fi
 
 [Official Site](https://github.com/FiloSottile/mkcert?tab=readme-ov-file)
 
-After you place get the certificates you will want to name them ``local.pem`` and ``local-key.pem``
+After you get the certificates you will want to name them ``local.pem`` and ``local-key.pem``
 
 Then you will want to open your ``hosts`` file within ``C:\Windows\System32\hosts``
 
