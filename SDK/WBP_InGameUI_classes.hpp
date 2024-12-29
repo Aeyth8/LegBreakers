@@ -11,10 +11,10 @@
 #include "Basic.hpp"
 
 #include "Engine_structs.hpp"
+#include "EHUDMapState_structs.hpp"
 #include "Matcha_structs.hpp"
 #include "OdyUI_structs.hpp"
 #include "OdyUI_classes.hpp"
-#include "EHUDMapState_structs.hpp"
 #include "CoreUObject_structs.hpp"
 #include "UMG_structs.hpp"
 

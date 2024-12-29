@@ -10,8 +10,8 @@
 
 #include "Basic.hpp"
 
-#include "Engine_structs.hpp"
 #include "WBP_MinimapIndicator_Base_classes.hpp"
+#include "Engine_structs.hpp"
 
 
 namespace SDK

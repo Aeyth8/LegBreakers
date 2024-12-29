@@ -11,8 +11,8 @@
 #include "Basic.hpp"
 
 #include "StructUtils_structs.hpp"
-#include "StructUtilsEngine_structs.hpp"
 #include "FCharacterSelectEntryUIData_InitParams_structs.hpp"
+#include "StructUtilsEngine_structs.hpp"
 
 
 namespace SDK::Params

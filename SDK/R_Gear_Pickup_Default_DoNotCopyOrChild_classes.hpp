@@ -10,8 +10,8 @@
 
 #include "Basic.hpp"
 
-#include "Engine_structs.hpp"
 #include "R_InteractivePickup_Base_classes.hpp"
+#include "Engine_structs.hpp"
 #include "Matcha_structs.hpp"
 
 

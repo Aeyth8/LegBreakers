@@ -12,8 +12,8 @@
 
 #include "GameplayTags_structs.hpp"
 #include "Engine_structs.hpp"
-#include "Matcha_structs.hpp"
 #include "Pickup_Coin_classes.hpp"
+#include "Matcha_structs.hpp"
 
 
 namespace SDK

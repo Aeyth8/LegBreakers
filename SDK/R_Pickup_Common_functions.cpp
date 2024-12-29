@@ -17,21 +17,21 @@
 namespace SDK
 {
 
-// Function R_Pickup_Common.R_Pickup_Common_C.ExecuteUbergraph_R_Pickup_Common
-// (Final, UbergraphFunction)
+// Function R_Pickup_Common.R_Pickup_Common_C.UpdateVisual
+// (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+// class UMatchaItemAsset*                 ItemAsset                                              (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, NoDestructor, HasGetValueTypeHash)
 
-void AR_Pickup_Common_C::ExecuteUbergraph_R_Pickup_Common(int32 EntryPoint)
+void AR_Pickup_Common_C::UpdateVisual(class UMatchaItemAsset* ItemAsset)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("R_Pickup_Common_C", "ExecuteUbergraph_R_Pickup_Common");
+		Func = Class->GetFunction("R_Pickup_Common_C", "UpdateVisual");
 
-	Params::R_Pickup_Common_C_ExecuteUbergraph_R_Pickup_Common Parms{};
+	Params::R_Pickup_Common_C_UpdateVisual Parms{};
 
-	Parms.EntryPoint = EntryPoint;
+	Parms.ItemAsset = ItemAsset;
 
 	UObject::ProcessEvent(Func, &Parms);
 }
@@ -59,26 +59,6 @@ void AR_Pickup_Common_C::K2_OnUpdateFromEntity(const class AMatchaSnapNetInterac
 }
 
 
-// Function R_Pickup_Common.R_Pickup_Common_C.SetTargeted
-// (Event, Public, BlueprintCallable, BlueprintEvent)
-// Parameters:
-// bool                                    bNewTargeted                                           (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-
-void AR_Pickup_Common_C::SetTargeted(bool bNewTargeted)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = Class->GetFunction("R_Pickup_Common_C", "SetTargeted");
-
-	Params::R_Pickup_Common_C_SetTargeted Parms{};
-
-	Parms.bNewTargeted = bNewTargeted;
-
-	UObject::ProcessEvent(Func, &Parms);
-}
-
-
 // Function R_Pickup_Common.R_Pickup_Common_C.UpdateQuantity
 // (BlueprintCallable, BlueprintEvent)
 // Parameters:
@@ -99,21 +79,41 @@ void AR_Pickup_Common_C::UpdateQuantity(int32 Quantity)
 }
 
 
-// Function R_Pickup_Common.R_Pickup_Common_C.UpdateVisual
-// (Public, BlueprintCallable, BlueprintEvent)
+// Function R_Pickup_Common.R_Pickup_Common_C.SetTargeted
+// (Event, Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class UMatchaItemAsset*                 ItemAsset                                              (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, NoDestructor, HasGetValueTypeHash)
+// bool                                    bNewTargeted                                           (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
-void AR_Pickup_Common_C::UpdateVisual(class UMatchaItemAsset* ItemAsset)
+void AR_Pickup_Common_C::SetTargeted(bool bNewTargeted)
 {
 	static class UFunction* Func = nullptr;
 
 	if (Func == nullptr)
-		Func = Class->GetFunction("R_Pickup_Common_C", "UpdateVisual");
+		Func = Class->GetFunction("R_Pickup_Common_C", "SetTargeted");
 
-	Params::R_Pickup_Common_C_UpdateVisual Parms{};
+	Params::R_Pickup_Common_C_SetTargeted Parms{};
 
-	Parms.ItemAsset = ItemAsset;
+	Parms.bNewTargeted = bNewTargeted;
+
+	UObject::ProcessEvent(Func, &Parms);
+}
+
+
+// Function R_Pickup_Common.R_Pickup_Common_C.ExecuteUbergraph_R_Pickup_Common
+// (Final, UbergraphFunction)
+// Parameters:
+// int32                                   EntryPoint                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+
+void AR_Pickup_Common_C::ExecuteUbergraph_R_Pickup_Common(int32 EntryPoint)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = Class->GetFunction("R_Pickup_Common_C", "ExecuteUbergraph_R_Pickup_Common");
+
+	Params::R_Pickup_Common_C_ExecuteUbergraph_R_Pickup_Common Parms{};
+
+	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
 }

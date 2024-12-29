@@ -16,6 +16,71 @@
 namespace SDK::Params
 {
 
+// Function R_Pickup_Common.R_Pickup_Common_C.UpdateVisual
+// 0x0040 (0x0040 - 0x0000)
+struct R_Pickup_Common_C_UpdateVisual final
+{
+public:
+	class UMatchaItemAsset*                       ItemAsset;                                         // 0x0000(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, NoDestructor, HasGetValueTypeHash)
+	bool                                          CallFunc_IsValid_ReturnValue;                      // 0x0008(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	uint8                                         Pad_9[0x7];                                        // 0x0009(0x0007)(Fixing Size After Last Property [ Dumper-7 ])
+	class AMatchaItemRenderer*                    K2Node_DynamicCast_AsMatcha_Item_Renderer;         // 0x0010(0x0008)(ZeroConstructor, NoDestructor, HasGetValueTypeHash)
+	bool                                          K2Node_DynamicCast_bSuccess;                       // 0x0018(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	uint8                                         Pad_19[0x7];                                       // 0x0019(0x0007)(Fixing Size After Last Property [ Dumper-7 ])
+	class UClass*                                 CallFunc_LoadClassAsset_Blocking_ReturnValue;      // 0x0020(0x0008)(ZeroConstructor, NoDestructor, HasGetValueTypeHash)
+	bool                                          CallFunc_IsValidSoftClassReference_ReturnValue;    // 0x0028(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	uint8                                         Pad_29[0x7];                                       // 0x0029(0x0007)(Fixing Size After Last Property [ Dumper-7 ])
+	class UClass*                                 K2Node_ClassDynamicCast_AsActor;                   // 0x0030(0x0008)(ZeroConstructor, NoDestructor, HasGetValueTypeHash)
+	bool                                          K2Node_ClassDynamicCast_bSuccess;                  // 0x0038(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	bool                                          CallFunc_NotEqual_ClassClass_ReturnValue;          // 0x0039(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+};
+static_assert(alignof(R_Pickup_Common_C_UpdateVisual) == 0x000008, "Wrong alignment on R_Pickup_Common_C_UpdateVisual");
+static_assert(sizeof(R_Pickup_Common_C_UpdateVisual) == 0x000040, "Wrong size on R_Pickup_Common_C_UpdateVisual");
+static_assert(offsetof(R_Pickup_Common_C_UpdateVisual, ItemAsset) == 0x000000, "Member 'R_Pickup_Common_C_UpdateVisual::ItemAsset' has a wrong offset!");
+static_assert(offsetof(R_Pickup_Common_C_UpdateVisual, CallFunc_IsValid_ReturnValue) == 0x000008, "Member 'R_Pickup_Common_C_UpdateVisual::CallFunc_IsValid_ReturnValue' has a wrong offset!");
+static_assert(offsetof(R_Pickup_Common_C_UpdateVisual, K2Node_DynamicCast_AsMatcha_Item_Renderer) == 0x000010, "Member 'R_Pickup_Common_C_UpdateVisual::K2Node_DynamicCast_AsMatcha_Item_Renderer' has a wrong offset!");
+static_assert(offsetof(R_Pickup_Common_C_UpdateVisual, K2Node_DynamicCast_bSuccess) == 0x000018, "Member 'R_Pickup_Common_C_UpdateVisual::K2Node_DynamicCast_bSuccess' has a wrong offset!");
+static_assert(offsetof(R_Pickup_Common_C_UpdateVisual, CallFunc_LoadClassAsset_Blocking_ReturnValue) == 0x000020, "Member 'R_Pickup_Common_C_UpdateVisual::CallFunc_LoadClassAsset_Blocking_ReturnValue' has a wrong offset!");
+static_assert(offsetof(R_Pickup_Common_C_UpdateVisual, CallFunc_IsValidSoftClassReference_ReturnValue) == 0x000028, "Member 'R_Pickup_Common_C_UpdateVisual::CallFunc_IsValidSoftClassReference_ReturnValue' has a wrong offset!");
+static_assert(offsetof(R_Pickup_Common_C_UpdateVisual, K2Node_ClassDynamicCast_AsActor) == 0x000030, "Member 'R_Pickup_Common_C_UpdateVisual::K2Node_ClassDynamicCast_AsActor' has a wrong offset!");
+static_assert(offsetof(R_Pickup_Common_C_UpdateVisual, K2Node_ClassDynamicCast_bSuccess) == 0x000038, "Member 'R_Pickup_Common_C_UpdateVisual::K2Node_ClassDynamicCast_bSuccess' has a wrong offset!");
+static_assert(offsetof(R_Pickup_Common_C_UpdateVisual, CallFunc_NotEqual_ClassClass_ReturnValue) == 0x000039, "Member 'R_Pickup_Common_C_UpdateVisual::CallFunc_NotEqual_ClassClass_ReturnValue' has a wrong offset!");
+
+// Function R_Pickup_Common.R_Pickup_Common_C.K2_OnUpdateFromEntity
+// 0x0010 (0x0010 - 0x0000)
+struct R_Pickup_Common_C_K2_OnUpdateFromEntity final
+{
+public:
+	const class AMatchaSnapNetInteractiveEntity*  EntityActor;                                       // 0x0000(0x0008)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, NoDestructor, HasGetValueTypeHash)
+	float                                         DeltaSeconds;                                      // 0x0008(0x0004)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+};
+static_assert(alignof(R_Pickup_Common_C_K2_OnUpdateFromEntity) == 0x000008, "Wrong alignment on R_Pickup_Common_C_K2_OnUpdateFromEntity");
+static_assert(sizeof(R_Pickup_Common_C_K2_OnUpdateFromEntity) == 0x000010, "Wrong size on R_Pickup_Common_C_K2_OnUpdateFromEntity");
+static_assert(offsetof(R_Pickup_Common_C_K2_OnUpdateFromEntity, EntityActor) == 0x000000, "Member 'R_Pickup_Common_C_K2_OnUpdateFromEntity::EntityActor' has a wrong offset!");
+static_assert(offsetof(R_Pickup_Common_C_K2_OnUpdateFromEntity, DeltaSeconds) == 0x000008, "Member 'R_Pickup_Common_C_K2_OnUpdateFromEntity::DeltaSeconds' has a wrong offset!");
+
+// Function R_Pickup_Common.R_Pickup_Common_C.UpdateQuantity
+// 0x0004 (0x0004 - 0x0000)
+struct R_Pickup_Common_C_UpdateQuantity final
+{
+public:
+	int32                                         Quantity;                                          // 0x0000(0x0004)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+};
+static_assert(alignof(R_Pickup_Common_C_UpdateQuantity) == 0x000004, "Wrong alignment on R_Pickup_Common_C_UpdateQuantity");
+static_assert(sizeof(R_Pickup_Common_C_UpdateQuantity) == 0x000004, "Wrong size on R_Pickup_Common_C_UpdateQuantity");
+static_assert(offsetof(R_Pickup_Common_C_UpdateQuantity, Quantity) == 0x000000, "Member 'R_Pickup_Common_C_UpdateQuantity::Quantity' has a wrong offset!");
+
+// Function R_Pickup_Common.R_Pickup_Common_C.SetTargeted
+// 0x0001 (0x0001 - 0x0000)
+struct R_Pickup_Common_C_SetTargeted final
+{
+public:
+	bool                                          bNewTargeted;                                      // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+};
+static_assert(alignof(R_Pickup_Common_C_SetTargeted) == 0x000001, "Wrong alignment on R_Pickup_Common_C_SetTargeted");
+static_assert(sizeof(R_Pickup_Common_C_SetTargeted) == 0x000001, "Wrong size on R_Pickup_Common_C_SetTargeted");
+static_assert(offsetof(R_Pickup_Common_C_SetTargeted, bNewTargeted) == 0x000000, "Member 'R_Pickup_Common_C_SetTargeted::bNewTargeted' has a wrong offset!");
+
 // Function R_Pickup_Common.R_Pickup_Common_C.ExecuteUbergraph_R_Pickup_Common
 // 0x0060 (0x0060 - 0x0000)
 struct R_Pickup_Common_C_ExecuteUbergraph_R_Pickup_Common final
@@ -62,71 +127,6 @@ static_assert(offsetof(R_Pickup_Common_C_ExecuteUbergraph_R_Pickup_Common, CallF
 static_assert(offsetof(R_Pickup_Common_C_ExecuteUbergraph_R_Pickup_Common, K2Node_DynamicCast_AsMatcha_Item_Renderer_1) == 0x000050, "Member 'R_Pickup_Common_C_ExecuteUbergraph_R_Pickup_Common::K2Node_DynamicCast_AsMatcha_Item_Renderer_1' has a wrong offset!");
 static_assert(offsetof(R_Pickup_Common_C_ExecuteUbergraph_R_Pickup_Common, K2Node_DynamicCast_bSuccess_2) == 0x000058, "Member 'R_Pickup_Common_C_ExecuteUbergraph_R_Pickup_Common::K2Node_DynamicCast_bSuccess_2' has a wrong offset!");
 static_assert(offsetof(R_Pickup_Common_C_ExecuteUbergraph_R_Pickup_Common, K2Node_Event_bNewTargeted) == 0x000059, "Member 'R_Pickup_Common_C_ExecuteUbergraph_R_Pickup_Common::K2Node_Event_bNewTargeted' has a wrong offset!");
-
-// Function R_Pickup_Common.R_Pickup_Common_C.K2_OnUpdateFromEntity
-// 0x0010 (0x0010 - 0x0000)
-struct R_Pickup_Common_C_K2_OnUpdateFromEntity final
-{
-public:
-	const class AMatchaSnapNetInteractiveEntity*  EntityActor;                                       // 0x0000(0x0008)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, NoDestructor, HasGetValueTypeHash)
-	float                                         DeltaSeconds;                                      // 0x0008(0x0004)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-};
-static_assert(alignof(R_Pickup_Common_C_K2_OnUpdateFromEntity) == 0x000008, "Wrong alignment on R_Pickup_Common_C_K2_OnUpdateFromEntity");
-static_assert(sizeof(R_Pickup_Common_C_K2_OnUpdateFromEntity) == 0x000010, "Wrong size on R_Pickup_Common_C_K2_OnUpdateFromEntity");
-static_assert(offsetof(R_Pickup_Common_C_K2_OnUpdateFromEntity, EntityActor) == 0x000000, "Member 'R_Pickup_Common_C_K2_OnUpdateFromEntity::EntityActor' has a wrong offset!");
-static_assert(offsetof(R_Pickup_Common_C_K2_OnUpdateFromEntity, DeltaSeconds) == 0x000008, "Member 'R_Pickup_Common_C_K2_OnUpdateFromEntity::DeltaSeconds' has a wrong offset!");
-
-// Function R_Pickup_Common.R_Pickup_Common_C.SetTargeted
-// 0x0001 (0x0001 - 0x0000)
-struct R_Pickup_Common_C_SetTargeted final
-{
-public:
-	bool                                          bNewTargeted;                                      // 0x0000(0x0001)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-};
-static_assert(alignof(R_Pickup_Common_C_SetTargeted) == 0x000001, "Wrong alignment on R_Pickup_Common_C_SetTargeted");
-static_assert(sizeof(R_Pickup_Common_C_SetTargeted) == 0x000001, "Wrong size on R_Pickup_Common_C_SetTargeted");
-static_assert(offsetof(R_Pickup_Common_C_SetTargeted, bNewTargeted) == 0x000000, "Member 'R_Pickup_Common_C_SetTargeted::bNewTargeted' has a wrong offset!");
-
-// Function R_Pickup_Common.R_Pickup_Common_C.UpdateQuantity
-// 0x0004 (0x0004 - 0x0000)
-struct R_Pickup_Common_C_UpdateQuantity final
-{
-public:
-	int32                                         Quantity;                                          // 0x0000(0x0004)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-};
-static_assert(alignof(R_Pickup_Common_C_UpdateQuantity) == 0x000004, "Wrong alignment on R_Pickup_Common_C_UpdateQuantity");
-static_assert(sizeof(R_Pickup_Common_C_UpdateQuantity) == 0x000004, "Wrong size on R_Pickup_Common_C_UpdateQuantity");
-static_assert(offsetof(R_Pickup_Common_C_UpdateQuantity, Quantity) == 0x000000, "Member 'R_Pickup_Common_C_UpdateQuantity::Quantity' has a wrong offset!");
-
-// Function R_Pickup_Common.R_Pickup_Common_C.UpdateVisual
-// 0x0040 (0x0040 - 0x0000)
-struct R_Pickup_Common_C_UpdateVisual final
-{
-public:
-	class UMatchaItemAsset*                       ItemAsset;                                         // 0x0000(0x0008)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, NoDestructor, HasGetValueTypeHash)
-	bool                                          CallFunc_IsValid_ReturnValue;                      // 0x0008(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	uint8                                         Pad_9[0x7];                                        // 0x0009(0x0007)(Fixing Size After Last Property [ Dumper-7 ])
-	class AMatchaItemRenderer*                    K2Node_DynamicCast_AsMatcha_Item_Renderer;         // 0x0010(0x0008)(ZeroConstructor, NoDestructor, HasGetValueTypeHash)
-	bool                                          K2Node_DynamicCast_bSuccess;                       // 0x0018(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	uint8                                         Pad_19[0x7];                                       // 0x0019(0x0007)(Fixing Size After Last Property [ Dumper-7 ])
-	class UClass*                                 CallFunc_LoadClassAsset_Blocking_ReturnValue;      // 0x0020(0x0008)(ZeroConstructor, NoDestructor, HasGetValueTypeHash)
-	bool                                          CallFunc_IsValidSoftClassReference_ReturnValue;    // 0x0028(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	uint8                                         Pad_29[0x7];                                       // 0x0029(0x0007)(Fixing Size After Last Property [ Dumper-7 ])
-	class UClass*                                 K2Node_ClassDynamicCast_AsActor;                   // 0x0030(0x0008)(ZeroConstructor, NoDestructor, HasGetValueTypeHash)
-	bool                                          K2Node_ClassDynamicCast_bSuccess;                  // 0x0038(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	bool                                          CallFunc_NotEqual_ClassClass_ReturnValue;          // 0x0039(0x0001)(ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-};
-static_assert(alignof(R_Pickup_Common_C_UpdateVisual) == 0x000008, "Wrong alignment on R_Pickup_Common_C_UpdateVisual");
-static_assert(sizeof(R_Pickup_Common_C_UpdateVisual) == 0x000040, "Wrong size on R_Pickup_Common_C_UpdateVisual");
-static_assert(offsetof(R_Pickup_Common_C_UpdateVisual, ItemAsset) == 0x000000, "Member 'R_Pickup_Common_C_UpdateVisual::ItemAsset' has a wrong offset!");
-static_assert(offsetof(R_Pickup_Common_C_UpdateVisual, CallFunc_IsValid_ReturnValue) == 0x000008, "Member 'R_Pickup_Common_C_UpdateVisual::CallFunc_IsValid_ReturnValue' has a wrong offset!");
-static_assert(offsetof(R_Pickup_Common_C_UpdateVisual, K2Node_DynamicCast_AsMatcha_Item_Renderer) == 0x000010, "Member 'R_Pickup_Common_C_UpdateVisual::K2Node_DynamicCast_AsMatcha_Item_Renderer' has a wrong offset!");
-static_assert(offsetof(R_Pickup_Common_C_UpdateVisual, K2Node_DynamicCast_bSuccess) == 0x000018, "Member 'R_Pickup_Common_C_UpdateVisual::K2Node_DynamicCast_bSuccess' has a wrong offset!");
-static_assert(offsetof(R_Pickup_Common_C_UpdateVisual, CallFunc_LoadClassAsset_Blocking_ReturnValue) == 0x000020, "Member 'R_Pickup_Common_C_UpdateVisual::CallFunc_LoadClassAsset_Blocking_ReturnValue' has a wrong offset!");
-static_assert(offsetof(R_Pickup_Common_C_UpdateVisual, CallFunc_IsValidSoftClassReference_ReturnValue) == 0x000028, "Member 'R_Pickup_Common_C_UpdateVisual::CallFunc_IsValidSoftClassReference_ReturnValue' has a wrong offset!");
-static_assert(offsetof(R_Pickup_Common_C_UpdateVisual, K2Node_ClassDynamicCast_AsActor) == 0x000030, "Member 'R_Pickup_Common_C_UpdateVisual::K2Node_ClassDynamicCast_AsActor' has a wrong offset!");
-static_assert(offsetof(R_Pickup_Common_C_UpdateVisual, K2Node_ClassDynamicCast_bSuccess) == 0x000038, "Member 'R_Pickup_Common_C_UpdateVisual::K2Node_ClassDynamicCast_bSuccess' has a wrong offset!");
-static_assert(offsetof(R_Pickup_Common_C_UpdateVisual, CallFunc_NotEqual_ClassClass_ReturnValue) == 0x000039, "Member 'R_Pickup_Common_C_UpdateVisual::CallFunc_NotEqual_ClassClass_ReturnValue' has a wrong offset!");
 
 // Function R_Pickup_Common.R_Pickup_Common_C.GetInteractionPromptLocation
 // 0x0038 (0x0038 - 0x0000)

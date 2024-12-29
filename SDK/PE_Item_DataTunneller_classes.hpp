@@ -10,10 +10,10 @@
 
 #include "Basic.hpp"
 
-#include "PE_Item_Base_classes.hpp"
 #include "Engine_structs.hpp"
 #include "CoreUObject_structs.hpp"
 #include "SnapNet_structs.hpp"
+#include "PE_Item_Base_classes.hpp"
 #include "Matcha_structs.hpp"
 
 

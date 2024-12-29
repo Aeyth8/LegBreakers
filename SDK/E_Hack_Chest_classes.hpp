@@ -11,10 +11,10 @@
 #include "Basic.hpp"
 
 #include "Matcha_structs.hpp"
+#include "E_TimedChest_classes.hpp"
 #include "GameplayTags_structs.hpp"
 #include "Engine_structs.hpp"
 #include "SnapNet_structs.hpp"
-#include "E_TimedChest_classes.hpp"
 
 
 namespace SDK

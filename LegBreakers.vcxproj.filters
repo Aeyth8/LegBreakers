@@ -5,36 +5,67 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="SDK">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SDK\CoreUObject_functions.cpp">
+    <ClCompile Include="pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SDK\Basic.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SDK\EngineSettings_functions.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>SDK</Filter>
     </ClCompile>
     <ClCompile Include="SDK\Engine_functions.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>SDK</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Downloads\Dumper-7\5.4.1-0+UE5-ByteBreakers\CppSDK\SDK\OnlineSubsystem_functions.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="SDK\EngineSettings_functions.cpp">
+      <Filter>SDK</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Downloads\Dumper-7\5.4.1-0+UE5-ByteBreakers\CppSDK\SDK\OnlineSubsystemUtils_functions.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="SDK\Matcha_functions.cpp">
+      <Filter>SDK</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Downloads\Dumper-7\5.4.1-0+UE5-ByteBreakers\CppSDK\SDK\Matcha_functions.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="SDK\OdyUtils_functions.cpp">
+      <Filter>SDK</Filter>
+    </ClCompile>
+    <ClCompile Include="SDK\OnlineSubsystem_functions.cpp">
+      <Filter>SDK</Filter>
+    </ClCompile>
+    <ClCompile Include="SDK\OnlineSubsystemUtils_functions.cpp">
+      <Filter>SDK</Filter>
+    </ClCompile>
+    <ClCompile Include="SDK\SnapNet_functions.cpp">
+      <Filter>SDK</Filter>
+    </ClCompile>
+    <ClCompile Include="SDK\CoreUObject_functions.cpp">
+      <Filter>SDK</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="SDK\Engine_classes.hpp">
+    <ClInclude Include="pch.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="PropertyFixup.hpp">
+      <Filter>SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="SDK.hpp">
+      <Filter>SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="UnrealContainers.hpp">
+      <Filter>SDK</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="NameCollisions.inl">
+      <Filter>SDK</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -10,8 +10,8 @@
 
 #include "Basic.hpp"
 
-#include "Engine_structs.hpp"
 #include "R_InteractivePickup_Base_classes.hpp"
+#include "Engine_structs.hpp"
 
 
 namespace SDK
@@ -27,11 +27,11 @@ public:
 	class UClass*                                 CurrentVisualClass;                                // 0x02C0(0x0008)(Edit, BlueprintVisible, ZeroConstructor, Transient, DisableEditOnInstance, NoDestructor, HasGetValueTypeHash)
 
 public:
-	void ExecuteUbergraph_R_Pickup_Common(int32 EntryPoint);
-	void K2_OnUpdateFromEntity(const class AMatchaSnapNetInteractiveEntity* EntityActor, float DeltaSeconds);
-	void SetTargeted(bool bNewTargeted);
-	void UpdateQuantity(int32 Quantity);
 	void UpdateVisual(class UMatchaItemAsset* ItemAsset);
+	void K2_OnUpdateFromEntity(const class AMatchaSnapNetInteractiveEntity* EntityActor, float DeltaSeconds);
+	void UpdateQuantity(int32 Quantity);
+	void SetTargeted(bool bNewTargeted);
+	void ExecuteUbergraph_R_Pickup_Common(int32 EntryPoint);
 
 	struct FVector GetInteractionPromptLocation(const class AActor* InteractingRenderer) const;
 

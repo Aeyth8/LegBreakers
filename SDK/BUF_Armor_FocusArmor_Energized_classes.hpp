@@ -10,8 +10,8 @@
 
 #include "Basic.hpp"
 
-#include "BUF_Armor_FocusArmor_classes.hpp"
 #include "Matcha_structs.hpp"
+#include "BUF_Armor_FocusArmor_classes.hpp"
 
 
 namespace SDK
