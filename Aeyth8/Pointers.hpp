@@ -4,7 +4,7 @@
 
 A special macro/function table written by Aeyth8 for easy pointer calls that universally works with any SDK generated with Dumper-7
 
-Manifest V1.1
+Manifest V1.2
 
 */
 
@@ -22,23 +22,52 @@ extern inline SDK::UKismetSystemLibrary* KismetSys{nullptr};
 // Global Base Address (GBA)
 extern inline uintptr_t GBA{0};
 
-inline void Log(const std::string& MSG) { std::cout << MSG << std::endl; }
+
+/*template <typename T, typename Ret, typename... Args>
+    inline auto Perhaps(T* ptr, Ret&& (T::*func)(Args&&...), Args&&... args) {
+        if (ptr) {
+            return (ptr->*func)(std::forward<Args>(args)...);
+        }
+        return Ret{};  // Return default if pointer is nullptr
+    }*/
+
+inline void LogA(const std::string& Header, const std::string& Text) { std::cout << Header << " :: " << Text << "\n"; Logger::DebugLog(Header, Text); Logger::Log.flush(); }
+inline void Log(const std::string& MSG) { std::cout << MSG << "\n"; Logger::DebugLog("Debug", MSG); Logger::Log.flush(); }
+
+inline std::string HexToString(const uintptr_t& Hex) {
+    std::ostringstream O;
+    O << std::hex << std::uppercase << Hex;
+    return O.str();
+}
+
+inline void ErrorBox(const std::wstring& Title, const std::wstring& Message, const UINT& Options) {
+    const int B = MessageBox(0, Message.c_str(), Title.c_str(), Options);
+    switch (B)
+    {
+    case IDOK:
+        abort();
+        break;
+    case IDCANCEL:
+        break;
+    }
+}
 
 // An easy template to construct new threads.
-inline static DWORD WINAPI ConstructThread(LPVOID Function) {
-    HANDLE Thread = CreateThread(nullptr, 0, (LPTHREAD_START_ROUTINE)Function, nullptr, 0, 0);
+inline static DWORD WINAPI ConstructThread(LPVOID Function, LPVOID Parameter = 0) {
+    HANDLE Thread = CreateThread(nullptr, 0, (LPTHREAD_START_ROUTINE)Function, Parameter, 0, 0);
     if (Thread != nullptr) CloseHandle(Thread);
     return 0;
 }
 
 
 // Checks if a pointer is valid, if null, the pointer class is logged.
-inline static void IsNull(const auto & ptr, const std::string & log) {
-    if (ptr == nullptr) Log(log);
+inline static void IsNull(const auto & Pointer, const std::string & LogMsg) {
+    if (Pointer == nullptr) Log(LogMsg);
 }
 
 // Simple yes or no response for safely checking/preventing calling null pointers. 
-inline static bool CheckNull(const auto & ptr) { return ptr == nullptr; }
+inline static bool CheckNull(const auto & Pointer) { return Pointer == nullptr; }
+inline static bool CheckNull(const auto & Pointer, std::string ClassName, std::string CustomMessage = " is a valid pointer.") { Pointer == nullptr ? Log(ClassName + " is a null pointer!") : Log(ClassName + CustomMessage); return Pointer == nullptr; }
 
 // UObject::FindObject<Class::Subclass::Object>() 
 // Derived from CheatGear's style of SDK functionality.
@@ -86,6 +115,18 @@ inline SDK::UEngine* UEngine() {
     return E;
 }
 
+inline static SDK::UIpNetDriver* UNetDriver() {
+    auto N = UWorld()->NetDriver;
+    IsNull(N, "UIpNetDriver is a null pointer!");
+    return static_cast<SDK::UIpNetDriver*>(N);
+}
+
+inline SDK::UGameUserSettings* UserSettings() {
+    auto S = SDK::UGameUserSettings::GetDefaultObj();
+    IsNull(S, "UGameUserSettings is a null pointer!");
+    return S;
+}
+
 // UWorld::GetWorld()->OwningGameInstance->LocalPlayers[0]->APlayerController
 inline SDK::APlayerController* Player0() {
     return UWorld()->OwningGameInstance->LocalPlayers[0]->PlayerController;
@@ -96,13 +137,25 @@ inline SDK::UKismetSystemLibrary* UKismetSys() {
     return SDK::UKismetSystemLibrary::GetDefaultObj();
 }
 
+inline SDK::ULevelStreamingDynamic* UKismetStream() { 
+    return SDK::ULevelStreamingDynamic::GetDefaultObj();
+}
+
+inline static void LoadLevelInstance(SDK::FString LevelName) {
+    UKismetStream()->LoadLevelInstance(UWorld(), LevelName, SDK::FVector(0,0,0), SDK::FRotator(0,0,0), 0, 0, 0, L"");
+}
+
+inline static void LoadLevelInstance(SDK::UObject* WorldContextObject, SDK::FString LevelName, SDK::FVector Vector, SDK::FRotator Rotator, bool* bOutSuccess) {
+    UKismetStream()->LoadLevelInstance(WorldContextObject, LevelName, Vector, Rotator, bOutSuccess, 0, 0, L"");
+}
+
 // UKismetStringLibrary::Conv_StringToName(L"")
 inline SDK::FName FString2FName(const SDK::FString & Str) {
     return SDK::UKismetStringLibrary::Conv_StringToName(Str);
 }
 
 // Executes a console command from the retrieved pointers.
-inline static void CMD(const std::wstring & Command) {
+inline static void CMD(const std::wstring& Command) {
     UKismetSys()->ExecuteConsoleCommand(UWorld(), Command.c_str(), Player0());
 }
 
@@ -118,35 +171,40 @@ inline static void ConstructUConsole() {
     UEngine()->GameViewport->ViewportConsole = static_cast<SDK::UConsole*>(ConsoleObj);
 }
 
-// A safer method of ConstructUConsole()
-inline static void ConstructUConsole_S() {
-    SDK::UInputSettings* iObj = SDK::UInputSettings::GetDefaultObj();
-    if (!CheckNull(iObj)) iObj->ConsoleKeys[0].KeyName = FString2FName(L"Tilde");
-    else { Log("<Pointers.hpp> / ConstructUConsole_S():: Console key failed to be assigned due to nullptr.\n"); }
-
-    SDK::UObject* ConsoleObj = SDK::UGameplayStatics::SpawnObject(UEngine()->ConsoleClass, UEngine()->GameViewport);
-
-    if (!CheckNull(ConsoleObj)) UEngine()->GameViewport->ViewportConsole = static_cast<SDK::UConsole*>(ConsoleObj);
-    else { Log("<Pointers.hpp> / ConstructUConsole_S():: UConsole failed to be constructed due to nullptr.\n"); }
-}
-
-// Macro to allocating the console.
+// Macro to allocating the console (not to be confused with the UConsole)
 inline static void LogWin() { AllocConsole(); FILE* Dummy; freopen_s(&Dummy, "CONOUT$", "w", stdout); freopen_s(&Dummy, "CONIN$", "r", stdin); }
 
-// Basic macro to initialize the SDK and game.
-namespace Pointers
-{
-    inline static void Init() {
-        GBA = (uintptr_t)GetModuleHandle(0);
-
-        LogWin();
-
-        Engine = UEngine(); World = UWorld(); KismetSys = UKismetSys();
-
-        ConstructUConsole_S();
-
-
-    }
-
-
+// Convert narrow-string to wide-string.
+inline static std::wstring StringToW(const std::string& Str) { 
+    std::wstring Return; 
+    Return.assign(Str.begin(), Str.end()); 
+    return Return; 
 }
+
+// Convert wide-string to narrow-string.
+inline static std::string WStringToN(const std::wstring& Str) { 
+    std::string Return; 
+    Return.assign(Str.begin(), Str.end()); 
+    return Return; 
+}
+
+inline static bool IsSafe{false};
+inline static int NullCount{0};
+
+// Prevent nullptr crashes by safety checking before initialization.
+inline static void SafeInit() {
+    LogWin(); // Allocates the console for logging the iterations / how long until UWorld is no longer null.
+    while (!IsSafe) { CheckNull(UWorld()) ? NullCount++, Log("SafeInit: UWorld is not initializing until a valid reference is found. Trying again in 1 second. Count : " + std::to_string(NullCount)), Sleep(1000) : (void)0, IsSafe = true; }
+    if (IsSafe) { ConstructUConsole(); NullCount = 0; return; }
+}
+
+// Construct SafeInit Thread (CSIT)
+inline static void CSIT() { ConstructThread(SafeInit, 0); IsSafe = false; }
+
+/*
+
+
+SAFEINIT IS CURRENTLY NOT WORKING DUE TO THE FACT THAT UWORLD AND UENGINE ARE BOTH VALID POINTERS BY LAUNCH, SOMETHING ELSE THAT IS NOT VALID IS CAUSING THE CRASH WITH THE CONSOLE
+
+
+*/

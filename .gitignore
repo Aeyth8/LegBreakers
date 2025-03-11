@@ -1,6 +1,4 @@
-.vs/*
-LegBreakers.vcxproj.filters*
+LegBreakers*
+.vs*
+x64*
 LegBreakers.vcxproj.user*
-x64/*
-API/local.pem*
-API/local-key.pem*
