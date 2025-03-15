@@ -19,6 +19,8 @@ inline static std::vector<Hooks::HookStructure> HookList =
 	{Offsets::UConsole, UFunctions::Func::UConsole, &UFunctions::Decl::FC_UConsole, "UConsole"},
 	{Offsets::Browse, UFunctions::Func::Browse, &UFunctions::Decl::FC_Browse, "Browse"},
 	{Offsets::AppPreExit, UFunctions::Func::AppPreExit, &UFunctions::Decl::FC_AppPreExit, "AppPreExit"},
+	{Offsets::PreLogin, UFunctions::Func::PreLogin, &UFunctions::Decl::FC_PreLogin, "PreLogin"},
+	//{Offsets::ActorGetNetMode, Net::ActorGetNetMode, &Net::FC_ActorGetNetMode, "ActorGetNetMode"},
 };
 
 SDK::UMatchaIdentityServiceModel* MatchaID;
@@ -54,11 +56,11 @@ static void Init()
 		ConstructUConsole();
 	}
 
-	SDK::FLoginResponseV1 AuthMe(L"WHOCARES", L"RefreshToken", FString2FName(L"Meaningless"), L"BeerOClock", L"Aeyth8", FString2FName(L"Initial"), true);
+	SDK::FLoginResponseV1 AuthMe(L"WHOCARES", L"RefreshToken", FString2FName(L"Meaningless"), L"BeerOClock", L"Aeyth8", FString2FName(L"Ok"), true);
 	MatchaID = GetLastOf<SDK::UMatchaIdentityServiceModel>();
 
 	MatchaID->HandleSuccessfulLoginResponse(AuthMe);
-
+	//Tick::StartThread();
 }
 
 

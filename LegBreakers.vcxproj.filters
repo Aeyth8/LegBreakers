@@ -34,6 +34,9 @@
     <Filter Include="Aeyth8\Proxy">
       <UniqueIdentifier>{dffab6be-eb86-4bee-bfc0-9f730502160b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Aeyth8\Tick">
+      <UniqueIdentifier>{d5a40b4f-3d6d-4ee1-9f7f-0fb62e752d68}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -83,6 +86,9 @@
     </ClCompile>
     <ClCompile Include="MinHook\src\hde\hde64.c">
       <Filter>MinHook\src\hde</Filter>
+    </ClCompile>
+    <ClCompile Include="Aeyth8\Tick\Tick.cpp">
+      <Filter>Aeyth8\Tick</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -148,6 +154,9 @@
     </ClInclude>
     <ClInclude Include="Aeyth8\Proxy\Proxy.hpp">
       <Filter>Aeyth8\Proxy</Filter>
+    </ClInclude>
+    <ClInclude Include="Aeyth8\Tick\Tick.hpp">
+      <Filter>Aeyth8\Tick</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

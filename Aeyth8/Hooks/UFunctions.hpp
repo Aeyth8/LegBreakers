@@ -1,6 +1,7 @@
 #pragma once
 #include "../../pch.h"
-#include "Aeyth8/Config/Global.hpp"
+#include "../Config/Global.hpp"
+#include "../Tick/Tick.hpp"
 
 class UFunctions
 {
@@ -41,7 +42,7 @@ public:
 		}
 	public:
 
-		inline static void ProcessEnd() { Hooks::DisableAllHooks(); Hooks::Uninit(); Logger::Close(); }
+		inline static void ProcessEnd() { Hooks::DisableAllHooks(); Hooks::Uninit(); Logger::Close(); Tick::CloseLoop(); }
 
 	private:
 
@@ -74,6 +75,9 @@ public:
 
 		typedef bool(__thiscall* InitListen)(SDK::UIpNetDriver*, SDK::UObject*, SDK::FURL& LocalURL, bool bReuseAddressAndPort, SDK::FString& Error);
 		inline static InitListen FC_InitListen{0};
+
+		typedef void(__thiscall* PreLogin)(SDK::AGameModeBase* This, SDK::FString* Options, SDK::FString* Address, SDK::FUniqueNetIdRepl* UniqueId, SDK::FString* ErrorMessage);
+		inline static PreLogin FC_PreLogin{0};
 
 		typedef bool(__thiscall* CreateNamedNetDriver)(SDK::UEngine*, SDK::UWorld* InWorld, SDK::FName NetDriverName, SDK::FName NetDriverDefinition);
 		inline static CreateNamedNetDriver FC_CreateNamedNetDriver{0};
@@ -122,6 +126,15 @@ public:
 			LogA("InitListen", Helpers::FURLParser(LocalURL));
 
 			Decl::FC_InitListen(This, InNotify, LocalURL, bReuseAddressAndPort, Error);
+		}
+
+		inline static std::string PreLoginTemp{""};
+		inline static void PreLogin(SDK::AGameModeBase* This, SDK::FString* Options, SDK::FString* Address, SDK::FUniqueNetIdRepl* UniqueId, SDK::FString* ErrorMessage)
+		{
+			PreLoginTemp = This->GetFullName();
+			PreLoginTemp += " | [Options]: " + Options->ToString() + " | [Address]: " + Address->ToString();
+			LogA("PreLogin", PreLoginTemp);
+			//Decl::FC_PreLogin(This, Options, Address, UniqueId, ErrorMessage);
 		}
 
 		inline static void AppPreExit()
@@ -177,6 +190,9 @@ public:
 		ROLE_MAX
 	};
 
+	const inline static std::string DT_NetMode[] = {"Standalone", "DedicatedServer", "ListenServer", "Client", "MAX"};
+	const inline static std::string DT_RemoteRole[] = {"None", "SimulatedProxy", "AutonomousProxy", "Authority", "MAX"};
+
 	typedef ENetMode(__thiscall* UWorldInternalGetNetMode)(SDK::UWorld* World);
 	inline static UWorldInternalGetNetMode FC_WorldGetNetMode{0};
 
@@ -201,71 +217,35 @@ public:
 		if (ActorHookMode == ENetMode::Passthrough) return FC_ActorGetNetMode(Actor);
 		return ActorHookMode;
 	}
-};
 
+	inline static void LogWorldNetMode(SDK::UWorld* WorldOverride = World) {
+		if (WorldOverride != nullptr && WorldOverride->IsA(SDK::UWorld::StaticClass())) {
+			FC_WorldGetNetMode = (UWorldInternalGetNetMode)(GBA + Offsets::WorldGetNetMode);
+			int i = FC_WorldGetNetMode(WorldOverride);
 
-// Custom hooks and function calls for engine debugging.
-class Debug2
-{
-private:
-	/*
-		UEngine::GetMaxFPS = 0x175E440
-		UEngine::GetMaxTickRate = 0x175E480
-	*/
-	typedef float(__thiscall* TGetMaxFPS)(); inline static TGetMaxFPS BS{0};
-	//inline static float(*TGetMaxFPS)();
-
-	class Tick
-	{
-	public:
-		typedef void(__thiscall* UGameEngineTick)(SDK::UGameEngine* Instance, float DeltaSeconds, bool bIdleMode);
-		inline static UGameEngineTick FC_UGameEngineTick{0};
-
-		inline static int TickCount{0}; 
-		inline static bool UsingTickIterator{false};
-
-		inline static void GameEngineTick(SDK::UGameEngine* Instance, float DeltaSeconds, bool bIdleMode) { TickManager(); FC_UGameEngineTick(Instance, DeltaSeconds, bIdleMode); }
-		inline static void TickManager() { if (!UsingTickIterator) if (GetMaxFPS() <= TickCount) { COUT << "TickCount = 0\n"; TickCount = 0; }
-			++TickCount;
-			COUT << "TickCount = " << TickCount << "\n";
+			LogA("UWorld::InternalGetNetMode", DT_NetMode[i]);
 		}
-		inline static void TickIterator() { while (true) { Sleep(1000); TickCount = 0; } }
-
-		
-	};
-
-	struct FFunction { const std::string FunctionName; uintptr_t StaticOffset; LPVOID FC_Pointer; };
-	inline static FFunction FunctionList[] = {
-		{"GetMaxFPS", 0x175E440, reinterpret_cast<LPVOID>(&BS)}
-	};
-	
-public:
-	inline static bool HookGameEngineTick(bool UseTickIterator = false) { if (UseTickIterator) { ConstructThread(Tick::TickIterator); Tick::UsingTickIterator = true; } return Hooks::CreateAndEnableHook((GBA + 0x13D5E30), Tick::GameEngineTick, &Tick::FC_UGameEngineTick, "UGameEngineTick"); }
-	
-
-	// These are raw function calls, retrieved from static offsets within the game decompilation and initialized for easy calling here.
-	inline static void InitFunctions() { 
-		for (int i{0}; i < std::size(FunctionList); ++i) {
-			FunctionList[i].FC_Pointer = reinterpret_cast<LPVOID*>(GBA + FunctionList[i].StaticOffset);
-			FunctionList[i].FC_Pointer != nullptr ? Log("Successfully retrieved pointer to function " + FunctionList[i].FunctionName + " : " + HexToString(reinterpret_cast<uintptr_t>(FunctionList[i].FC_Pointer))) : Log("Failed to retrieve pointer to Function " + FunctionList[i].FunctionName);
-		}
-		
-	}
-	inline static float GetMaxFPS() { 
-		static float (*TGetMaxFPS)() = decltype(TGetMaxFPS)(GBA + 0x175E440);
-		return TGetMaxFPS();
-		//return BS();
-	}//return FC_GetMaxFPS(); }
-};
-
-class FMemory2
-{
-public:
-	inline static void* MallocExternal(size_t Count, uint32 Alignment) {
-		static int64(*Function)(size_t Count, uint32 Alignment) = decltype(Function)(GBA + 0x1573D90);
-		return (void*)Function(Count, Alignment);
+		else { LogA("LogWorldNetMode", "Failed due to nullptr."); }
 	}
 
+	inline static void LogActorNetMode(SDK::AActor* ActorOverride = 0) {
+		// This if-chain must exist or it will crash when switching levels.
+		if (World) if (World->OwningGameInstance) if (World->OwningGameInstance->LocalPlayers) ActorOverride = World->OwningGameInstance->LocalPlayers[0]->PlayerController;
+		if (ActorOverride != nullptr && ActorOverride->IsA(SDK::AActor::StaticClass())) {
+			FC_ActorGetNetMode = (AActorInternalGetNetMode)(GBA + Offsets::ActorGetNetMode);
+			int i = FC_ActorGetNetMode(ActorOverride);
 
+			LogA("AActor::InternalGetNetMode", DT_NetMode[i]);
+		}
+		else { LogA("LogActorNetMode", "Failed due to nullptr."); }
+	}
 
+	inline static void LogRemoteRole() {
+
+	}
+
+	inline static void LogLocalRole() {
+
+	}
 };
+
