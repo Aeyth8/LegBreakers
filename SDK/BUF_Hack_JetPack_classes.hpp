@@ -10,8 +10,8 @@
 
 #include "Basic.hpp"
 
-#include "Matcha_structs.hpp"
 #include "BUF_Hack_Base_classes.hpp"
+#include "Matcha_structs.hpp"
 
 
 namespace SDK

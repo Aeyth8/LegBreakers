@@ -10,9 +10,9 @@
 
 #include "Basic.hpp"
 
-#include "EHUDMapState_structs.hpp"
 #include "Matcha_structs.hpp"
 #include "OdyUI_structs.hpp"
+#include "EHUDMapState_structs.hpp"
 #include "CoreUObject_structs.hpp"
 #include "EnhancedInput_structs.hpp"
 #include "SlateCore_structs.hpp"

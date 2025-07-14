@@ -27,12 +27,14 @@ private:
 		Time << std::put_time(&now_tm, "%m/%d/%Y %H:%M:%S %p");
 		return Time.str();
 	}
+
 	
 public:
 	inline static std::ofstream Log; // Why is this public? In some cases it's much easier to just directly stream content over rather than using a proprietary function, but for the rest just use the function.
 
 	inline static void DebugLog(const std::string& Header, const std::string& Text) {
 		Log << "[" + Timestamp() + "] " + "[" + Header + "] - " + Text << "\n";
+		Log.flush();
 	}
 
 	inline static void Init() {
@@ -64,5 +66,5 @@ public:
 		*/
 	}
 
-	inline static void Close() { Log << "Closing log...\n"; Log.close(); }
+	inline static void Close() { DebugLog("UNINITIALIZED", "Closing log..."); Log.close(); }
 };

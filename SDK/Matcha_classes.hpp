@@ -2804,7 +2804,7 @@ static_assert(sizeof(UMatchaModalWidget) == 0x000448, "Wrong size on UMatchaModa
 
 // Class Matcha.MatchaErrorModalWidget
 // 0x0048 (0x0490 - 0x0448)
-class UMatchaErrorModalWidget : public UMatchaModalWidget
+class UMatchaErrorModalWidget final : public UMatchaModalWidget
 {
 public:
 	class FText                                   ErrorTitle;                                        // 0x0448(0x0010)(BlueprintVisible, BlueprintReadOnly, ExposeOnSpawn, NativeAccessSpecifierPublic)

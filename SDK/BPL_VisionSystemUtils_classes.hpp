@@ -21,8 +21,8 @@ namespace SDK
 class UBPL_VisionSystemUtils_C final : public UBlueprintFunctionLibrary
 {
 public:
-	static void IsVisibleViaVisibilityTriggerCheck(class ACharacterRenderer_Base_C* Target, class ACharacterRenderer_Base_C* Viewer, class UObject* __WorldContext, bool* IsVisible);
 	static void CharRenderShouldBeGameplayVisibleToViewerRender(class ACharacterRenderer_Base_C* ViewerRenderer, class ACharacterRenderer_Base_C* TargetRenderer, class UObject* __WorldContext, bool* ShouldBeVisible);
+	static void IsVisibleViaVisibilityTriggerCheck(class ACharacterRenderer_Base_C* Target, class ACharacterRenderer_Base_C* Viewer, class UObject* __WorldContext, bool* IsVisible);
 
 public:
 	static class UClass* StaticClass()

@@ -1,68 +1,47 @@
 #include "pch.h"
-#include "SnapNet/SnapNet.hpp"
-#include "Aeyth8/Hooks/UFunctions.hpp"
+
+#include "Aeyth8/Global.hpp"
+#include "Aeyth8/Tools/Pointers.h"
+#include "Aeyth8/Logic/Matcha.h"
+
+/*
+
+Written by Aeyth8
+
+https://github.com/Aeyth8
+
+*/
 
 
-typedef void(__thiscall* PracticeRoom)(SDK::UMatchaLocalPlayerUIData* This);
-static PracticeRoom FC_PracticeRoom{0};
+// My entire codebase has been designed to use namespaces like this.
+using namespace A8CL; using namespace Global; using namespace Pointers;
 
-static void LogMe(SDK::UMatchaLocalPlayerUIData* This)
-{
-	LogA("Practice Room", "Called");
-	FC_PracticeRoom(This);
-}
 
-// Something to do with FString allocation 0x0F9F260
 
-inline static std::vector<Hooks::HookStructure> HookList =
-{
-	{Offsets::UConsole, UFunctions::Func::UConsole, &UFunctions::Decl::FC_UConsole, "UConsole"},
-	{Offsets::Browse, UFunctions::Func::Browse, &UFunctions::Decl::FC_Browse, "Browse"},
-	{Offsets::AppPreExit, UFunctions::Func::AppPreExit, &UFunctions::Decl::FC_AppPreExit, "AppPreExit"},
-	{Offsets::PreLogin, UFunctions::Func::PreLogin, &UFunctions::Decl::FC_PreLogin, "PreLogin"},
-	//{Offsets::ActorGetNetMode, Net::ActorGetNetMode, &Net::FC_ActorGetNetMode, "ActorGetNetMode"},
-};
 
-SDK::UMatchaIdentityServiceModel* MatchaID;
+static void Init() {
 
-static void Init()
-{
+	// Retrieves the Global Base Address (GBA) by getting the module handle casted as a uintptr_t
 	GBA = (uintptr_t)GetModuleHandleA("ByteBreakers-Win64-Shipping.exe");
-	SnapNet::InitBase();
 
 	LogWin();
-	Hooks::Init();
+	LogA("GetCommandLineA", GetCommandLineA());
+	LogA("INITIALIZED", "The Global Base Address [GBA] is " + HexToString(GBA));
 
-	Hooks::CreateAndEnableAllHooks(HookList);
-	if (Global::bSnapNetCoreLoaded) SnapNet::HookIsLicenseValid();
-	
-	//Hooks::CreateAndEnableHook((GBA + 0x48E45A0), LogMe, &FC_PracticeRoom, "Invoke Practice Room");
-	//Hooks::CreateAndEnableHook((GBA + 0x47CC930), WebSocketURL, 0, "WebSocketURL");
-	//Hooks::CreateAndEnableHook((GBA + 0x4793CD0), ReturnAPI, 0, "ReturnAPI");
+	Matcha::Init_Hooks();
 
-	if (!(!CheckNull(UWorld()) && !CheckNull(Player0()))) Sleep(10000);
-
-	// The proxy loads so fast that SnapNet hasn't loaded into the game at the initial attempt of retrieving it, if that is the case it reruns the code.
-	if (!Global::bSnapNetCoreLoaded) SnapNet::InitBase();
-	if (Global::bSnapNetCoreLoaded) SnapNet::HookIsLicenseValid();
-
-	Log("GAME INITIALIZED"); Log("Global Base Address = " + HexToString(GBA)); Log("SnapNet Base Address = " + HexToString(SnapNet::GBA));
-
-	// Allocates local pointers
-	Engine = UEngine(); World = UWorld(); KismetSys = UKismetSys();
-
-
-	if (!Global::bConstructedUConsole) { Global::bConstructedUConsole = true;
-		ConstructUConsole();
+	uint32 NullWorld{0};
+	while (UWorld() == nullptr)
+	{
+		++NullWorld;
+		if (NullWorld >= 30) LogA("Init", "It has been a minute and the game has still not loaded, try restarting.");
+		Sleep(2000);
 	}
 
-	SDK::FLoginResponseV1 AuthMe(L"WHOCARES", L"RefreshToken", FString2FName(L"Meaningless"), L"BeerOClock", L"Aeyth8", FString2FName(L"Ok"), true);
-	MatchaID = GetLastOf<SDK::UMatchaIdentityServiceModel>();
+	Matcha::Init_Vars(UWorld());
 
-	MatchaID->HandleSuccessfulLoginResponse(AuthMe);
-	//Tick::StartThread();
+	if (!bConstructedUConsole) bConstructedUConsole = ConstructUConsole();
 }
-
 
 int __stdcall DllMain(HMODULE hModule, DWORD ulReasonForCall, LPVOID lpReserved) {
 	DisableThreadLibraryCalls(hModule);
@@ -70,7 +49,10 @@ int __stdcall DllMain(HMODULE hModule, DWORD ulReasonForCall, LPVOID lpReserved)
 	if (ulReasonForCall != DLL_PROCESS_ATTACH)
 		return 1;
 
-	Proxy::Attach(hModule);
+	Global::InitLog();
+
+	if (Proxy::Attach(hModule))
+		ConstructThread(Init);
 
 	return 1;
 }

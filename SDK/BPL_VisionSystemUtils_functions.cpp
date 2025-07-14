@@ -17,34 +17,6 @@
 namespace SDK
 {
 
-// Function BPL_VisionSystemUtils.BPL_VisionSystemUtils_C.IsVisibleViaVisibilityTriggerCheck
-// (Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintEvent)
-// Parameters:
-// class ACharacterRenderer_Base_C*        Target                                                 (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, NoDestructor, HasGetValueTypeHash)
-// class ACharacterRenderer_Base_C*        Viewer                                                 (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, NoDestructor, HasGetValueTypeHash)
-// class UObject*                          __WorldContext                                         (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, NoDestructor, HasGetValueTypeHash)
-// bool                                    IsVisible                                              (Parm, OutParm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-
-void UBPL_VisionSystemUtils_C::IsVisibleViaVisibilityTriggerCheck(class ACharacterRenderer_Base_C* Target, class ACharacterRenderer_Base_C* Viewer, class UObject* __WorldContext, bool* IsVisible)
-{
-	static class UFunction* Func = nullptr;
-
-	if (Func == nullptr)
-		Func = StaticClass()->GetFunction("BPL_VisionSystemUtils_C", "IsVisibleViaVisibilityTriggerCheck");
-
-	Params::BPL_VisionSystemUtils_C_IsVisibleViaVisibilityTriggerCheck Parms{};
-
-	Parms.Target = Target;
-	Parms.Viewer = Viewer;
-	Parms.__WorldContext = __WorldContext;
-
-	GetDefaultObj()->ProcessEvent(Func, &Parms);
-
-	if (IsVisible != nullptr)
-		*IsVisible = Parms.IsVisible;
-}
-
-
 // Function BPL_VisionSystemUtils.BPL_VisionSystemUtils_C.CharRenderShouldBeGameplayVisibleToViewerRender
 // (Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintEvent)
 // Parameters:
@@ -70,6 +42,34 @@ void UBPL_VisionSystemUtils_C::CharRenderShouldBeGameplayVisibleToViewerRender(c
 
 	if (ShouldBeVisible != nullptr)
 		*ShouldBeVisible = Parms.ShouldBeVisible;
+}
+
+
+// Function BPL_VisionSystemUtils.BPL_VisionSystemUtils_C.IsVisibleViaVisibilityTriggerCheck
+// (Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintEvent)
+// Parameters:
+// class ACharacterRenderer_Base_C*        Target                                                 (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, NoDestructor, HasGetValueTypeHash)
+// class ACharacterRenderer_Base_C*        Viewer                                                 (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, NoDestructor, HasGetValueTypeHash)
+// class UObject*                          __WorldContext                                         (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, NoDestructor, HasGetValueTypeHash)
+// bool                                    IsVisible                                              (Parm, OutParm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+
+void UBPL_VisionSystemUtils_C::IsVisibleViaVisibilityTriggerCheck(class ACharacterRenderer_Base_C* Target, class ACharacterRenderer_Base_C* Viewer, class UObject* __WorldContext, bool* IsVisible)
+{
+	static class UFunction* Func = nullptr;
+
+	if (Func == nullptr)
+		Func = StaticClass()->GetFunction("BPL_VisionSystemUtils_C", "IsVisibleViaVisibilityTriggerCheck");
+
+	Params::BPL_VisionSystemUtils_C_IsVisibleViaVisibilityTriggerCheck Parms{};
+
+	Parms.Target = Target;
+	Parms.Viewer = Viewer;
+	Parms.__WorldContext = __WorldContext;
+
+	GetDefaultObj()->ProcessEvent(Func, &Parms);
+
+	if (IsVisible != nullptr)
+		*IsVisible = Parms.IsVisible;
 }
 
 }

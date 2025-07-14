@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.8.34330.188
+VisualStudioVersion = 17.9.34902.65
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LegBreakers", "LegBreakers.vcxproj", "{0FE8F22C-A210-4634-827A-AC4F46CE6C79}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LegBreakers", "LegBreakers.vcxproj", "{DDAF5ADE-E4C5-4BBF-9D85-1C6B38873255}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0FE8F22C-A210-4634-827A-AC4F46CE6C79}.Release|x64.ActiveCfg = Release|x64
-		{0FE8F22C-A210-4634-827A-AC4F46CE6C79}.Release|x64.Build.0 = Release|x64
-		{0FE8F22C-A210-4634-827A-AC4F46CE6C79}.Release|x86.ActiveCfg = Release|Win32
-		{0FE8F22C-A210-4634-827A-AC4F46CE6C79}.Release|x86.Build.0 = Release|Win32
+		{DDAF5ADE-E4C5-4BBF-9D85-1C6B38873255}.Release|x64.ActiveCfg = Release|x64
+		{DDAF5ADE-E4C5-4BBF-9D85-1C6B38873255}.Release|x64.Build.0 = Release|x64
+		{DDAF5ADE-E4C5-4BBF-9D85-1C6B38873255}.Release|x86.ActiveCfg = Release|Win32
+		{DDAF5ADE-E4C5-4BBF-9D85-1C6B38873255}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {C8C536A0-1EBF-46BC-B205-F6C115A70774}
+		SolutionGuid = {70406EFC-542B-4ED7-AC32-BCE081E2B700}
 	EndGlobalSection
 EndGlobal
